@@ -39,9 +39,15 @@ async function main() {
     const data = await firstValueFrom(acala.vestClaimableBalance$);
 
     if (acala.checkCanClaim(data.vestSchedules, blockNumber, configs.strategy)) {
-      logger.info(`do claim ${data.claimable.toString()} at ${blockNumber}`);
+      // calculate transfer balance
+      let amount = data.transferable - BigInt(Number(configs.strategy.remained || 1)) * BigInt(10 ** 12);
 
-      acala.doClaim(receive, data.claimable, signer).subscribe({
+      amount = amount > BigInt(0) ? amount : BigInt(0);
+      amount = amount + data.claimable;
+
+      logger.info(`do claim ${data.claimable.toString()} at ${blockNumber}`);
+      logger.info(`tranfer ${amount.toString()} at ${blockNumber}`);
+      acala.doClaim(receive, amount, signer).subscribe({
         error: logger.error.bind(logger)
       })
     }

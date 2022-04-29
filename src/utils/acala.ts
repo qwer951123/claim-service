@@ -16,10 +16,11 @@ interface Schedule {
 }
 
 interface ClaimableInformation {
-  relayChainNumber: bigint,
-  vestSchedules: Schedule[],
-  vestLocked: bigint,
-  claimable: bigint
+  relayChainNumber: bigint;
+  vestSchedules: Schedule[];
+  vestLocked: bigint;
+  transferable: bigint;
+  claimable: bigint;
 }
 
 export class AcalaUtils {
@@ -121,18 +122,29 @@ export class AcalaUtils {
       const result = planedClaimable - (totalVesting - vestLocked);
 
       return result
-    }
+    };
+    const transferable$ = this.api.query.system.account(address).pipe(
+      map((data) => {
+        const free = data.data.free.toBigInt();
+        const miscFrozen = data.data.miscFrozen.toBigInt();
+        const feeFrozen = data.data.feeFrozen.toBigInt();
+
+        return free - (miscFrozen - feeFrozen > 0n ? miscFrozen : feeFrozen);
+      })
+    )
 
     return combineLatest({
       relayChainNumber: relayChainNumber$,
       vestSchedules: vestSchedules$,
-      vestLocked: vestLocked$
+      vestLocked: vestLocked$,
+      transferable: transferable$
     }).pipe(
-      map(({ relayChainNumber, vestSchedules, vestLocked }) => {
+      map(({ relayChainNumber, vestSchedules, vestLocked, transferable }) => {
         return {
           relayChainNumber,
           vestSchedules,
           vestLocked,
+          transferable,
           claimable: getTotalClaimedBalance(relayChainNumber, vestSchedules, vestLocked)
         }
       }

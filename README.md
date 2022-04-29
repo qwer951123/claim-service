@@ -16,8 +16,9 @@ yarn run build
 
   | name | desc |
   | -- | -- |
-  | strategy.atList | can do claim at target block height |
-  | strategy.interval | can do claim in interval |
+  | strategy.atList | specify a certain set of block heights to claim |
+  | strategy.interval | set how many blocks interval to claim |
+  | strategy.remained| config the remained balance in the account |
   | account.receive | the address of receive the claimed balance |
   | account.signer | the mnemonic of the control account |
 

@@ -9,7 +9,8 @@ export interface Configs {
   }
   strategy: {
     interval?: number;
-    atList?: number[]
+    atList?: number[];
+    remained?: number;
   }
   account: {
     receive: string;

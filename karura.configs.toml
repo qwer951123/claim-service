@@ -7,8 +7,9 @@ polkadot = [
 ]
 
 [strategy]
-atList = [12450960]
+atList = [12450960, 13000000, 14000000]
 interval = 1000
+remained = 1
 
 [account]
 receive= "5CdF5f5YtcA52d9K6dAbvkR3hk5tKuoBFAhiWf47GggaBMPH"
