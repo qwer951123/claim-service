@@ -1,0 +1,15 @@
+[endpoints]
+acala = [
+  "wss://karura.api.onfinality.io/public-ws"
+]
+polkadot = [
+  "wss://kusama.api.onfinality.io/public-ws"
+]
+
+[strategy]
+atList = [12450960]
+interval = 1000
+
+[account]
+receive= "5CdF5f5YtcA52d9K6dAbvkR3hk5tKuoBFAhiWf47GggaBMPH"
+signer = "YOUR MNEMONIC"

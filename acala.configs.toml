@@ -1,0 +1,15 @@
+[endpoints]
+acala = [
+  "wss://acala-polkadot.api.onfinality.io/public-ws"
+]
+polkadot = [
+  "wss://polkadot.api.onfinality.io/public-ws"
+]
+
+[strategy]
+atList = [10060770]
+interval = 1000
+
+[account]
+receive= "5GREeQcGHt7na341Py6Y6Grr38KUYRvVoiFSiDB52Gt7VZiN"
+signer = "YOUR MNEMONIC"
