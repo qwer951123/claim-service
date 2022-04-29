@@ -1,0 +1,29 @@
+{
+  "name": "claim-acala",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/main.ts",
+    "start:acala": "node ./build/main.js acala.configs.toml | pino-pretty",
+    "start:karura": "node ./build/main.js karura.configs.toml | pino-pretty"
+  },
+  "resolutions": {
+    "@acala-network/api": "^4.1.2-12",
+    "@polkadot/api": "^8.2.1"
+  },
+  "dependencies": {
+    "@acala-network/api": "^4.1.1",
+    "@acala-network/types": "^4.1.1",
+    "@polkadot/api": "^7.14.3",
+    "@polkadot/types-create": "^8.2.1",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "pino": "^7.11.0",
+    "pino-pretty": "^7.6.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
